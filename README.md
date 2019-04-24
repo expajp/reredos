@@ -1,8 +1,8 @@
 # Reredos
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/reredos`. To experiment with that code, run `bin/console` for an interactive prompt.
+Reredos is the email address validator, which is free from [ReDoS Attack](https://www.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS).
 
-TODO: Delete this and the text above, and describe your gem
+You can examine if an email address is based on [RFC1035](https://www.ietf.org/rfc/rfc1035.txt) and [RFC5321](https://www.ietf.org/rfc/rfc5321.txt).
 
 ## Installation
 
@@ -21,8 +21,13 @@ Or install it yourself as:
     $ gem install reredos
 
 ## Usage
+```ruby
+Reredos.valid_email?('user@example.com')
+# => true
 
-TODO: Write usage instructions here
+Reredos.valid_email?('user@@example.com')
+# => false
+```
 
 ## Development
 
