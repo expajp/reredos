@@ -6,7 +6,7 @@ require "reredos/version"
 Gem::Specification.new do |spec|
   spec.name          = "reredos"
   spec.version       = Reredos::VERSION
-  spec.authors       = ["Shu OGAWARA"]
+  spec.authors       = ["expajp"]
   spec.email         = ["expajp@gmail.com"]
 
   spec.summary       = %q{email address validator, which is free from ReDoS attack}
