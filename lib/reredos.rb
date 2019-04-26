@@ -37,7 +37,8 @@ module Reredos
       return false unless letter?(str[0])
       return false unless alphanumeric?(str[-1])
       return true if str[1...-1].empty?
-      return str[1...-1].chars.all? { |c| hyphen_or_alphanumeric?(c) }
+
+      str[1...-1].chars.all? { |c| hyphen_or_alphanumeric?(c) }
     end
 
     def letter?(char)
