@@ -24,7 +24,7 @@ module Reredos
 
       labels = str.split('.')
       return false if labels.map(&:length).any?{ |_| _ > DOMAIN_LABEL_MAX_LENGTH }
-      return false unless labels.map{ |_| /\A[0-9a-zA-Z\-]+\z/ === _ }.all? # ラベルに含まれる文字が1文字以上の英数字orハイフン
+      return false unless labels.all? { |_| valid_label?(_) }
 
       true
     end
@@ -32,6 +32,31 @@ module Reredos
     def valid_username?(str)
       return false if str.length > USERNAME_MAX_LENGTH
       /\A[0-9a-zA-Z\.\+\-\_]+\z/ === str # 既定の文字のみで構成されている
+    end
+
+    # ラベルはアルファベットで始まり、アルファベットか数字かハイフンが続き、アルファベットか数字で終わる
+    def valid_label?(str)
+      return false if str.length == 0
+      return false unless letter?(str[0])
+      return false unless alphanumeric?(str[-1])
+      return true if str[1...-1].empty?
+      return str[1...-1].chars.all? { |_| hyphen_or_alphanumeric?(_) }
+    end
+
+    def letter?(char)
+      ('a'..'z').include?(char) || ('A'..'Z').include?(char)
+    end
+
+    def digit?(char)
+      ('0'..'9').include?(char)
+    end
+
+    def alphanumeric?(char)
+      letter?(char) || digit?(char)
+    end
+
+    def hyphen_or_alphanumeric?(char)
+      char == '-' || alphanumeric?(char)
     end
   end
 end
