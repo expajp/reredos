@@ -91,12 +91,6 @@ RSpec.describe Reredos do
           expect(Reredos.valid_email?(email)).to be_falsy
         end
       end
-      context 'only hypen label' do
-        let(:email){ 'user@example.-.com' }
-        it 'reject what has only hyphen label' do
-          expect(Reredos.valid_email?(email)).to be_falsy
-        end
-      end
       context 'starting with numeric' do
         let(:email){ 'user@example.0abc.com' }
         it 'reject what has label that starts with numeric' do
