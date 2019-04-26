@@ -6,14 +6,14 @@ module Reredos
   DOMAIN_MAX_LENGTH       = 255 # ドメインの最大長
   DOMAIN_LABEL_MAX_LENGTH = 63  # ドメインラベルの最大長
   USERNAME_MAX_LENGTH     = 64  # ユーザネームの最大長
-  
+
   class << self
     def valid_email?(str)
       return false if str.length > EMAIL_MAX_LENGTH
       return false if str.count('@') != 1 # @は一度だけ
 
       username, domain = str.split('@')
-      valid_username?(username) && valid_domain?(domain) 
+      valid_username?(username) && valid_domain?(domain)
     end
 
     private
