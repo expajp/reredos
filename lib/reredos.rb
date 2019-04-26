@@ -20,7 +20,7 @@ module Reredos
 
     def valid_domain?(str)
       return false if str.length > DOMAIN_MAX_LENGTH
-      return false unless str.split('.').all? { |_| valid_label?(_) }
+      return false unless str.split('.').all? { |l| valid_label?(l) }
 
       true
     end
@@ -37,7 +37,7 @@ module Reredos
       return false unless letter?(str[0])
       return false unless alphanumeric?(str[-1])
       return true if str[1...-1].empty?
-      return str[1...-1].chars.all? { |_| hyphen_or_alphanumeric?(_) }
+      return str[1...-1].chars.all? { |c| hyphen_or_alphanumeric?(c) }
     end
 
     def letter?(char)
