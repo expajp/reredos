@@ -20,10 +20,7 @@ module Reredos
 
     def valid_domain?(str)
       return false if str.length > DOMAIN_MAX_LENGTH
-
-      labels = str.split('.')
-      return false if labels.map(&:length).any?{ |_| _ > DOMAIN_LABEL_MAX_LENGTH }
-      return false unless labels.all? { |_| valid_label?(_) }
+      return false unless str.split('.').all? { |_| valid_label?(_) }
 
       true
     end
@@ -36,6 +33,7 @@ module Reredos
     # ラベルはアルファベットで始まり、アルファベットか数字かハイフンが続き、アルファベットか数字で終わる
     def valid_label?(str)
       return false if str.empty?
+      return false if str.length > DOMAIN_LABEL_MAX_LENGTH
       return false unless letter?(str[0])
       return false unless alphanumeric?(str[-1])
       return true if str[1...-1].empty?
