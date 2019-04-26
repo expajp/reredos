@@ -24,14 +24,14 @@ module Reredos
 
       labels = str.split('.')
       return false if labels.map(&:length).any?{ |_| _ > DOMAIN_LABEL_MAX_LENGTH }
-      return false unless labels.map{ |_| /^[0-9a-zA-Z\-]+$/ === _ }.all? # ラベルに含まれる文字が1文字以上の英数字orハイフン
+      return false unless labels.map{ |_| /\A[0-9a-zA-Z\-]+\z/ === _ }.all? # ラベルに含まれる文字が1文字以上の英数字orハイフン
 
       true
     end
 
     def valid_username?(str)
       return false if str.length > USERNAME_MAX_LENGTH
-      /^[0-9a-zA-Z\.\+\-\_]+$/ === str # 既定の文字のみで構成されている
+      /\A[0-9a-zA-Z\.\+\-\_]+\z/ === str # 既定の文字のみで構成されている
     end
   end
 end

@@ -46,3 +46,10 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Reredos project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/reredos/blob/master/CODE_OF_CONDUCT.md).
+
+## Release Notes
+### 0.1.1 - April 26, 2019
+* Fixed a bug, that it accepted strings including new line
+
+### 0.1.0 - April 24, 2019
+* First Version

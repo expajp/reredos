@@ -56,6 +56,12 @@ RSpec.describe Reredos do
           expect(Reredos.valid_email?(email)).to be_falsy
         end
       end
+      context 'including new line' do
+        let(:email){ "username\nusername@example.com" }
+        it 'reject new line' do
+          expect(Reredos.valid_email?(email)).to be_falsy
+        end
+      end
     end
 
     describe 'structure' do
@@ -86,6 +92,7 @@ RSpec.describe Reredos do
         end
       end
     end
+
     describe 'TLD' do
       context 'ended by -, which does not exist as TLD' do
         let(:email){ 'user@example.com-' }
