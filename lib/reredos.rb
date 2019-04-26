@@ -36,7 +36,7 @@ module Reredos
 
     # ラベルはアルファベットで始まり、アルファベットか数字かハイフンが続き、アルファベットか数字で終わる
     def valid_label?(str)
-      return false if str.length == 0
+      return false if str.empty?
       return false unless letter?(str[0])
       return false unless alphanumeric?(str[-1])
       return true if str[1...-1].empty?
