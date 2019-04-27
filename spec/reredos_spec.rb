@@ -91,6 +91,24 @@ RSpec.describe Reredos do
           expect(Reredos.valid_email?(email)).to be_falsy
         end
       end
+      context 'starting with numeric' do
+        let(:email){ 'user@example.0abc.com' }
+        it 'reject what has label that starts with numeric' do
+          expect(Reredos.valid_email?(email)).to be_falsy
+        end
+      end
+      context 'ending with hypyen' do
+        let(:email){ 'user@example.abc-.com' }
+        it 'reject what has label that ends with hyphen' do
+          expect(Reredos.valid_email?(email)).to be_falsy
+        end
+      end
+      context 'single letter label' do
+        let(:email){ 'user@example.a.com' }
+        it 'accept what has single letter label' do
+          expect(Reredos.valid_email?(email)).to be_truthy
+        end
+      end
     end
 
     describe 'TLD' do
