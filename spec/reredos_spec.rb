@@ -85,10 +85,24 @@ RSpec.describe Reredos do
           end
         end
       end
-      context 'consecutive dots in domain' do
-        let(:email){ 'user@example..example.com' }
-        it 'reject ruthlessly, if used in past' do
-          expect(Reredos.valid_email?(email)).to be_falsy
+      describe 'dots' do
+        context 'consecutive dots in domain' do
+          let(:email){ 'user@example..example.com' }
+          it 'reject ruthlessly, if used in past' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
+        context 'dots on first of username' do
+          let(:email){ '.user@example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
+        context 'dots on last of username' do
+          let(:email){ 'user.@example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
         end
       end
     end
