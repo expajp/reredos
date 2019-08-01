@@ -20,7 +20,7 @@ module Reredos
 
     def valid_domain?(str)
       return false if str.length > DOMAIN_MAX_LENGTH
-      return false unless str.split('.').all? { |l| valid_label?(l) }
+      return false unless str.split('.', -1).all? { |l| valid_label?(l) }
 
       true
     end

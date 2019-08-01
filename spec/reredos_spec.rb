@@ -110,6 +110,18 @@ RSpec.describe Reredos do
             expect(Reredos.valid_email?(email)).to be_falsy
           end
         end
+        context 'dots on first of domain' do
+          let(:email){ 'user@.example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
+        context 'dots on last of domain' do
+          let(:email){ 'user@example.com.' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
       end
       context 'starting with numeric' do
         let(:email){ 'user@example.0abc.com' }
