@@ -27,8 +27,7 @@ module Reredos
 
     def valid_username?(str)
       return false if str.length > USERNAME_MAX_LENGTH
-      return false if str[0] == '.' || str[-1] == '.'
-      return false if str.include?('..')
+      return false if str.split('.', -1).any?(&:empty?)
       /\A[0-9a-zA-Z\.\+\-\_]+\z/ === str # 既定の文字のみで構成されている
     end
 
