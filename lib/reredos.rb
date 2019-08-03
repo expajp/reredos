@@ -2,8 +2,8 @@ require "reredos/version"
 
 module Reredos
   class Error < StandardError; end
-  EMAIL_MAX_LENGTH        = 256 # メールアドレスの最大長
-  DOMAIN_MAX_LENGTH       = 255 # ドメインの最大長
+  EMAIL_MAX_LENGTH        = 254 # メールアドレスの最大長
+  DOMAIN_MAX_LENGTH       = 253 # ドメインの最大長
   DOMAIN_LABEL_MAX_LENGTH = 63  # ドメインラベルの最大長
   USERNAME_MAX_LENGTH     = 64  # ユーザネームの最大長
 
