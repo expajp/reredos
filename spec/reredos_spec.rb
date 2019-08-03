@@ -6,7 +6,7 @@ RSpec.describe Reredos do
   describe '#valid_email?' do
     describe 'length' do
       context 'valid total, username, and domain-label length' do
-        let(:email){ 'user'*16 + '@' + ('a'*63+'.')*2 + 'a'*63 }
+        let(:email){ 'user'*16 + '@' + ('a'*63+'.')*2 + 'a'*61 }
         it 'accept what has 254 chars' do
           expect(Reredos.valid_email?(email)).to be_truthy
         end
