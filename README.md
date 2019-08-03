@@ -48,6 +48,12 @@ The gem is available as open source under the terms of the [MIT License](https:/
 Everyone interacting in the Reredos project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/reredos/blob/master/CODE_OF_CONDUCT.md).
 
 ## Release Notes
+### 0.1.3 - August 4, 2019
+* Fixed bugs below:
+  * it accepted consecutive dots
+  * it accepted dots as first or last character of domain
+* The limit for the number of characters of email address changes from 256 to 254
+
 ### 0.1.2 - July 29, 2019
 * Fixed a bug, that it accepted dots as first or last character of username
 
