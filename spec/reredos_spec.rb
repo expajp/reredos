@@ -7,13 +7,13 @@ RSpec.describe Reredos do
     describe 'length' do
       context 'valid total, username, and domain-label length' do
         let(:email){ 'user'*16 + '@' + ('a'*63+'.')*2 + 'a'*63 }
-        it 'accept what has 256 chars' do
+        it 'accept what has 254 chars' do
           expect(Reredos.valid_email?(email)).to be_truthy
         end
       end
       context 'invalid total length' do
-        let(:email){ 'user@' + ('a'*63+'.')*3 + 'a'*60 }
-        it 'reject what has over 256 chars' do
+        let(:email){ 'user@' + ('a'*63+'.')*3 + 'a'*58 }
+        it 'reject what has over 254 chars' do
           expect(Reredos.valid_email?(email)).to be_falsy
         end
       end
@@ -86,9 +86,15 @@ RSpec.describe Reredos do
         end
       end
       describe 'dots' do
+        context 'consecutive dots in username' do
+          let(:email){ 'user..user@example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
         context 'consecutive dots in domain' do
           let(:email){ 'user@example..example.com' }
-          it 'reject ruthlessly, if used in past' do
+          it 'reject ruthlessly, even if used in past' do
             expect(Reredos.valid_email?(email)).to be_falsy
           end
         end
@@ -100,6 +106,18 @@ RSpec.describe Reredos do
         end
         context 'dots on last of username' do
           let(:email){ 'user.@example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
+        context 'dots on first of domain' do
+          let(:email){ 'user@.example.com' }
+          it 'reject' do
+            expect(Reredos.valid_email?(email)).to be_falsy
+          end
+        end
+        context 'dots on last of domain' do
+          let(:email){ 'user@example.com.' }
           it 'reject' do
             expect(Reredos.valid_email?(email)).to be_falsy
           end
